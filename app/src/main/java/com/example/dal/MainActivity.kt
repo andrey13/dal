@@ -52,6 +52,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun ScreenMain(vm: DalViewModel) {
     var data: List<Proverb> by rememberSaveable {
