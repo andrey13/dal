@@ -4,7 +4,9 @@ import android.app.Application
 import android.util.Log
 import com.example.dal.data.DalDataBase
 import com.example.dal.data.DalRepository
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class DalApp : Application() {
     private val database by lazy { DalDataBase.getDatabase(this) }
     val repo by lazy { DalRepository(database.dalDao()) }
