@@ -96,6 +96,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
     annotationProcessor("androidx.room:room-compiler:2.6.0")
+    //noinspection KaptUsageInsteadOfKsp
     kapt("androidx.room:room-compiler:2.6.0")
 
 
