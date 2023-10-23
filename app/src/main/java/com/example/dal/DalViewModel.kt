@@ -18,8 +18,6 @@ class DalViewModel @Inject constructor(repository: DalRepository) : ViewModel() 
 
     private val _isLoading = MutableStateFlow(true)
 
-    //val isLoading: StateFlow<Boolean> = _isLoading
-
     val allProverbs : LiveData<List<Proverb>> = repository.getAllProverbs()
         .onStart {
             Log.i("--==>", "onStart")

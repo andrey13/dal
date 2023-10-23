@@ -58,7 +58,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ScreenMain(vm: DalViewModel) {
-    //val isLoading by vm.isLoading.collectAsState(initial = true)
 
     var data: List<Proverb> by rememberSaveable {
         mutableStateOf(listOf())
@@ -68,20 +67,13 @@ fun ScreenMain(vm: DalViewModel) {
 
     data = vm.allProverbs.observeAsState(listOf()).value
 
-//    data = vm.loadData().observeAsState(listOf()).value
-
     if (data.isEmpty()) {
-//      if(true) {
           Column {
               CircularProgressIndicator(
                   modifier = Modifier.width(64.dp),
                   color = MaterialTheme.colorScheme.surfaceVariant,
                   trackColor = MaterialTheme.colorScheme.secondary,
               )
-//              LinearProgressIndicator(
-//                  color = MaterialTheme.colorScheme.surfaceVariant,
-//                  trackColor = MaterialTheme.colorScheme.secondary,
-//              )
           }
     } else {
         Column {

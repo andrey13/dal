@@ -9,6 +9,5 @@ class DalApp : Application() {
 
     init {
         Log.i("--==>", "DalApplication: init -------------------------------------------")
-        //tabText = resources.getStringArray(R.array.tab_array)
     }
 }
