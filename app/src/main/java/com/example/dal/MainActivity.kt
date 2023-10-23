@@ -44,21 +44,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DalTheme {
-//                val owner = LocalViewModelStoreOwner.current
-//                val repo = (application as DalApp).repo
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//
-//                    owner?.let {
-//                        val viewModel: DalViewModel = viewModel(
-//                            it,
-//                            "CookViewModel",
-//                            DalViewModelFactory(repo)
-//                        )
                         ScreenMain(vm)
-//                    }
                 }
             }
         }

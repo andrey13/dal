@@ -7,19 +7,6 @@ import javax.inject.Inject
 class DalRepository @Inject constructor(private val dalDao: DalDao) {
 
     fun getAllProverbs(): Flow<List<Proverb>> {
-        val res1 = dalDao.getAllProverbs()
-        return res1
+        return dalDao.getAllProverbs()
     }
-
-//    suspend fun getAll(): List<Proverb> {
-//        return dalDao.getAll()
-//    }
-
-//    fun getAllF(): Flow<List<Proverb>> {
-//        val ll = List(10) {index -> Proverb(index, "text $index") }
-//        Log.i("--==>", "data2")
-//        val ff = flow { emit(ll) }
-//        Log.i("--==>", "data3")
-//        return ff
-//    }
 }
