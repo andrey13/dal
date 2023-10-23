@@ -1,7 +1,6 @@
 package com.example.dal.data
 
 import android.content.Context
-import android.util.Log
 import androidx.room.*
 //import androidx.room.migration.AutoMigrationSpec
 import com.example.dal.data.entities.*

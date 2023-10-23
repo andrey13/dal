@@ -1,0 +1,7 @@
+TableInfo{name='proverb', columns={id=Column{name='id', type='INTEGER', affinity='3', notNull=false, primaryKeyPosition=1, defaultValue='undefined'}, text=Column{name='text', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0, defaultValue=''''}}, foreignKeys=[], indices=[]}
+TableInfo{name='proverb', columns={id=Column{name='id', type='INTEGER', affinity='3', notNull=false, primaryKeyPosition=1, defaultValue='undefined'}, text=Column{name='text', type='TEXT(200)', affinity='2', notNull=false, primaryKeyPosition=0, defaultValue='undefined'}}, foreignKeys=[], indices=[]}
+
+CREATE TABLE p2 (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	CONSTRAINT p2_PK PRIMARY KEY (id)
+);

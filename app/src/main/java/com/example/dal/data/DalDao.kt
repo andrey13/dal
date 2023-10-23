@@ -15,6 +15,9 @@ interface DalDao {
     @Query("SELECT * FROM Proverb")
     fun getAllProverbs(): Flow<List<Proverb>>
 
+    @Query("SELECT * FROM Proverb")
+    fun getAll(): List<Proverb>
+
     //-----------------------------------------------------------------------------------
     // getData<T>(): Flow<List<Data>>
     //-----------------------------------------------------------------------------------
