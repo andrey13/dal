@@ -3,6 +3,7 @@ package com.example.dal
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
@@ -22,8 +23,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dal.data.entities.Proverb
 import com.example.dal.ui.theme.DalTheme
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -34,27 +33,32 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.sp
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val vm: DalViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DalTheme {
-                val owner = LocalViewModelStoreOwner.current
-                val repo = (application as DalApp).repo
+//                val owner = LocalViewModelStoreOwner.current
+//                val repo = (application as DalApp).repo
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    owner?.let {
-                        val viewModel: DalViewModel = viewModel(
-                            it,
-                            "CookViewModel",
-                            DalViewModelFactory(repo)
-                        )
-                        ScreenMain(viewModel)
-                    }
+//
+//                    owner?.let {
+//                        val viewModel: DalViewModel = viewModel(
+//                            it,
+//                            "CookViewModel",
+//                            DalViewModelFactory(repo)
+//                        )
+                        ScreenMain(vm)
+//                    }
                 }
             }
         }

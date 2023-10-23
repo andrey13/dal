@@ -3,16 +3,18 @@ package com.example.dal
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dal.data.DalRepository
 import com.example.dal.data.entities.Proverb
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import javax.inject.Inject
 
-class DalViewModel(repository: DalRepository) : ViewModel() {
+@HiltViewModel
+class DalViewModel @Inject constructor(repository: DalRepository) : ViewModel() {
 
     private val _isLoading = MutableStateFlow(true)
 
@@ -57,12 +59,12 @@ class DalViewModel(repository: DalRepository) : ViewModel() {
 }
 
 //---------------------------------------------------------------------------------------
-class DalViewModelFactory(private val repository: DalRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DalViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return DalViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+//class DalViewModelFactory(private val repository: DalRepository) : ViewModelProvider.Factory {
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(DalViewModel::class.java)) {
+//            @Suppress("UNCHECKED_CAST")
+//            return DalViewModel(repository) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}

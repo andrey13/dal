@@ -1,8 +1,6 @@
 package com.example.dal.data
 
-import android.content.Context
 import androidx.room.*
-//import androidx.room.migration.AutoMigrationSpec
 import com.example.dal.data.entities.*
 
 @Database(
@@ -23,35 +21,35 @@ abstract class DalDataBase : RoomDatabase() {
     abstract fun dalDao(): DalDao
 
 
-    companion object {
-
-//        private val MIGRATION_1_TO_2 = Migration1To2()
-//        private val MIGRATION_2_TO_3 = Migration2To3()
-
-        //@Volatile
-        private var INSTANCE: DalDataBase? = null
-
-        fun getDatabase(context: Context): DalDataBase {
-            synchronized(this) {
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        DalDataBase::class.java,
-                        "dal.db"
-                    )
-                        //.fallbackToDestructiveMigration()
-//                        .addMigrations(MIGRATION_1_TO_2)
-//                        .addMigrations(MIGRATION_2_TO_3)
-                        .createFromAsset("dal.db")
-                        .build()
-
-                    INSTANCE = instance
-                }
-
-                return instance
-            }
-        }
-    }
+//    companion object {
+//
+////        private val MIGRATION_1_TO_2 = Migration1To2()
+////        private val MIGRATION_2_TO_3 = Migration2To3()
+//
+//        //@Volatile
+//        private var INSTANCE: DalDataBase? = null
+//
+//        fun getDatabase(context: Context): DalDataBase {
+//            synchronized(this) {
+//                var instance = INSTANCE
+//
+//                if (instance == null) {
+//                    instance = Room.databaseBuilder(
+//                        context.applicationContext,
+//                        DalDataBase::class.java,
+//                        "dal.db"
+//                    )
+//                        //.fallbackToDestructiveMigration()
+////                        .addMigrations(MIGRATION_1_TO_2)
+////                        .addMigrations(MIGRATION_2_TO_3)
+//                        .createFromAsset("dal.db")
+//                        .build()
+//
+//                    INSTANCE = instance
+//                }
+//
+//                return instance
+//            }
+//        }
+//    }
 }

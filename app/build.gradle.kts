@@ -124,3 +124,7 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
+hilt {
+    enableAggregatingTask = true
+}
