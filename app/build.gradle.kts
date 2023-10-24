@@ -102,23 +102,25 @@ dependencies {
 
 
     // LiveData
-    val lifecycleVersion = "2.6.2"
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    // val_lifecycleVersion = "2.6.2"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     //ViewModel Compose
 
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     //implementation("androidx.compose.runtime:runtime-livedata:1.2.1")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     ///annotationProcessor("com.google.dagger:hilt-compiler:2.48.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
+    // hiltViewModel()
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }
 
 kapt {

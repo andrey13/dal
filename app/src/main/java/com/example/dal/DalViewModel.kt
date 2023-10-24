@@ -1,6 +1,8 @@
 package com.example.dal
 
-import android.util.Log
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -16,15 +18,16 @@ import javax.inject.Inject
 @HiltViewModel
 class DalViewModel @Inject constructor(repository: DalRepository) : ViewModel() {
 
+    var state1 by mutableStateOf("xxx")
+        private set
+
     private val _isLoading = MutableStateFlow(true)
 
     val allProverbs : LiveData<List<Proverb>> = repository.getAllProverbs()
         .onStart {
-            Log.i("--==>", "onStart")
             _isLoading.value = false
         }
         .onCompletion {
-            Log.i("--==>", "onCompletion")
             _isLoading.value = false
         }
         .asLiveData(viewModelScope.coroutineContext)

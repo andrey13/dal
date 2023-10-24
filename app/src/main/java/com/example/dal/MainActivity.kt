@@ -3,7 +3,6 @@ package com.example.dal
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
@@ -23,6 +22,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.dal.data.entities.Proverb
 import com.example.dal.ui.theme.DalTheme
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -38,7 +38,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val vm: DalViewModel by viewModels()
+//    private val vm: DalViewModel by viewModels()
+//    private val vm: DalViewModel = hiltViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                        ScreenMain(vm)
+                        ScreenMain()
                 }
             }
         }
@@ -57,7 +58,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun ScreenMain(vm: DalViewModel) {
+fun ScreenMain(vm: DalViewModel = hiltViewModel()) {
 
     var data: List<Proverb> by rememberSaveable {
         mutableStateOf(listOf())
@@ -77,6 +78,7 @@ fun ScreenMain(vm: DalViewModel) {
           }
     } else {
         Column {
+            Text(vm.state1)
             OutlinedTextField(
                 value = filterText,
                 onValueChange = { filterText = it },
