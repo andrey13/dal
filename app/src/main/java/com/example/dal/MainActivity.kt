@@ -85,8 +85,7 @@ fun ScreenMain(vm: DalViewModel = hiltViewModel()) {
                 value = filterText,
                 onValueChange = {
                     filterText = it
-                    vm.updateText(it.text)
-                                },
+                    vm.updateText(it.text) },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text("filter") },
                 singleLine = true,
