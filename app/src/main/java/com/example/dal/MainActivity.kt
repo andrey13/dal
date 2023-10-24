@@ -64,9 +64,11 @@ fun ScreenMain(vm: DalViewModel = hiltViewModel()) {
         mutableStateOf(listOf())
     }
 
-    var filterText by remember { mutableStateOf(TextFieldValue()) }
-
     data = vm.allProverbs.observeAsState(listOf()).value
+
+    var filterText by remember {
+        mutableStateOf(TextFieldValue(vm.text))
+    }
 
     if (data.isEmpty()) {
           Column {
@@ -78,10 +80,13 @@ fun ScreenMain(vm: DalViewModel = hiltViewModel()) {
           }
     } else {
         Column {
-            Text(vm.state1)
+            Text(vm.text)
             OutlinedTextField(
                 value = filterText,
-                onValueChange = { filterText = it },
+                onValueChange = {
+                    filterText = it
+                    vm.updateText(it.text)
+                                },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text("filter") },
                 singleLine = true,
