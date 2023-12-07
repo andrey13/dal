@@ -1,8 +1,12 @@
 package com.example.dal
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
+import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
@@ -33,23 +37,59 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.sp
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-//    private val vm: DalViewModel by viewModels()
+    private val vm: DalViewModel by viewModels()
 //    private val vm: DalViewModel = hiltViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition() {
+                !vm.isReady.value
+            }
+
+            setOnExitAnimationListener {screen ->
+                val zoomX = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_X,
+                    0.4f,
+                    0.0f
+                )
+                val zoomY = ObjectAnimator.ofFloat(
+                    screen.iconView,
+                    View.SCALE_Y,
+                    0.4f,
+                    0.0f
+                )
+                zoomX.interpolator = OvershootInterpolator()
+                zoomX.duration = 500L
+                zoomX.doOnEnd { screen.remove() }
+
+                zoomY.interpolator = OvershootInterpolator()
+                zoomY.duration = 500L
+                zoomY.doOnEnd { screen.remove() }
+
+                zoomX.start()
+                zoomY.start()
+            }
+
+        }
+
         setContent {
             DalTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                        ScreenMain()
+                        ScreenMain(vm)
                 }
             }
         }
